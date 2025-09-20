@@ -1,7 +1,7 @@
 # Dokumen PRD (Product Requirement Document) - ProdApp
 
 **Versi:** 1.0
-**Tanggal:** 9 Oktober 2025
+**Tanggal:** 20 Oktober 2025
 **Penulis:** [Tegar Miftaqur Rohim dan Tim]
 
 ---
