@@ -1,7 +1,7 @@
 # ProdApp - ERD (Entity-Relationship Diagram)
 
 **Versi:** 1.0
-**Tanggal:** 9 20 September 2025
+**Tanggal:** 20 September 2025
 **Penulis:** [Tegar Miftaqur Rohim dan Tim]
 
 ---
