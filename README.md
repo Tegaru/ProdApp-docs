@@ -10,13 +10,13 @@ Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang meman
 
 1.  **[01_PRD_Product_Requirement_Document.md](01_PRD.md)**
     *   Mendefinisikan visi produk, tujuan, target pengguna, dan fitur-fitur yang akan diimplementasikan.
-2.  **[02_ERD_Entity_Relationship_Diagram.md](02_ERD_Entity_Relationship_Diagram.md)**
+2.  **[02_ERD_Entity_Relationship_Diagram.md](02_ERD.md)**
     *   Menggambarkan struktur database relasional dan hubungan antar entitas data.
-3.  **[03_SRS_Software_Requirements_Specification.md](03_SRS_Software_Requirements_Specification.md)**
+3.  **[03_SRS_Software_Requirements_Specification.md](03_SRS.md)**
     *   Merinci persyaratan fungsional dan non-fungsional secara detail untuk pengembangan.
-4.  **[04_SDD_Software_Design_Document.md](04_SDD_Software_Design_Document.md)**
+4.  **[04_SDD_Software_Design_Document.md](04_SDD.md)**
     *   Menjelaskan desain arsitektur sistem, komponen perangkat lunak, dan bagaimana mereka akan berinteraksi.
-5.  **[05_SPRINT_MVP_Timeline_Checklist.md](05_SPRINT_MVP_Timeline_Checklist.md)**
+5.  **[05_SPRINT_MVP_Timeline_Checklist.md](05_Checklis_Timeline_Sprint_MVP.md)**
     *   Menyediakan rencana kerja berupa daftar periksa dan garis waktu untuk sprint pengembangan MVP.
 
 ---
