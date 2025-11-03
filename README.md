@@ -8,7 +8,7 @@ Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang meman
 
 ## Daftar Dokumen:
 
-1.  **[01_PRD_Product_Requirement_Document.md](01_PRD_Product_Requirement_Document.md)**
+1.  **[01_PRD_Product_Requirement_Document.md](01_PRD.md)**
     *   Mendefinisikan visi produk, tujuan, target pengguna, dan fitur-fitur yang akan diimplementasikan.
 2.  **[02_ERD_Entity_Relationship_Diagram.md](02_ERD_Entity_Relationship_Diagram.md)**
     *   Menggambarkan struktur database relasional dan hubungan antar entitas data.
