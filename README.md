@@ -16,7 +16,8 @@ Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang meman
     *   Merinci persyaratan fungsional dan non-fungsional secara detail untuk pengembangan.
 4.  **[04_SDD_Software_Design_Document.md](04_SDD.md)**
     *   Menjelaskan desain arsitektur sistem, komponen perangkat lunak, dan bagaimana mereka akan berinteraksi.
-5.  **[05_SPRINT_MVP_Timeline_Checklist.md](05_Checklis_Timeline_Sprint_MVP.md)**
+5.  **[05_SPRINT_MVP_Timeline_Checklist.md](05_Checklist_Timeline_Sprint_MVP.md
+)**
     *   Menyediakan rencana kerja berupa daftar periksa dan garis waktu untuk sprint pengembangan MVP.
 
 ---
