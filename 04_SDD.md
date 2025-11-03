@@ -37,7 +37,7 @@ Aplikasi dikembangkan untuk platform Android menggunakan Flutter dengan penyimpa
 
 ### 2.1 Tinjauan Arsitektur ✔ Clean Architecture
 ### **2.Desain Arsitektur Sistem**
-
+```
 +---------------------------------------------------------+
 | Presentation Layer |
 | (Flutter Widgets, Riverpod Providers, GoRouter) |
@@ -54,6 +54,7 @@ Aplikasi dikembangkan untuk platform Android menggunakan Flutter dengan penyimpa
 | Data Layer |
 | (Repository Impl, Drift DB, Notification Scheduler) |
 +---------------------------------------------------------+
+```
 
 ## 2.2 Deskripsi Lapisan
 
@@ -140,6 +141,8 @@ Aplikasi dikembangkan untuk platform Android menggunakan Flutter dengan penyimpa
     *   `class NetworkFailure extends Failure { final String message; }` (untuk masa depan).
 
 ### **6.Struktur Proyek**
+
+```
 lib/
 └── src/
     ├── core/                          # Kode umum & utilitas aplikasi
@@ -188,7 +191,7 @@ lib/
         ├── global_widgets/            # Widget yang banyak dipakai
         └── routing/                   # GoRouter setup & navigation
             └── app_router.dart
-
+```
 
 📌 **Dokumen SDD ini akan digunakan sebagai pedoman resmi dalam implementasi ProdApp.**  
 """
