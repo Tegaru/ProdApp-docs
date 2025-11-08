@@ -1,10 +1,10 @@
-# ProdApp : Dokumentasi Proyek Aplikasi Mobile
+# Tagihanku : Dokumentasi Proyek Aplikasi Mobile
 
-Selamat datang di repositori dokumentasi untuk proyek aplikasi mobile "ProdApp"!
+Selamat datang di repositori dokumentasi untuk proyek aplikasi mobile "Tagihanku"!
 
-ProdApp adalah aplikasi to-do list dan perencana produktivitas yang dirancang untuk membantu pengguna mengelola tugas harian, menetapkan pengingat, dan mengatur jadwal mereka dengan antarmuka yang sederhana dan intuitif. Proyek ini dibangun dengan fokus pada performa yang ringan dan pengalaman pengguna yang optimal.
+Tagihanku adalah aplikasi pencatat dan pengingat tagihan yang dirancang untuk membantu pengguna mengelola semua tagihan bulanan dan cicilan, menetapkan pengingat, dan menghindari biaya keterlambatan dengan antarmuka yang sederhana dan intuitif. Proyek ini dibangun dengan fokus pada performa yang ringan dan pengalaman pengguna yang optimal.
 
-Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang memandu pengembangan Minimum Viable Product (MVP) aplikasi ProdApp.
+Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang memandu pengembangan Minimum Viable Product (MVP) aplikasi Tagihanku.
 
 ## Daftar Dokumen:
 
@@ -16,8 +16,7 @@ Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang meman
     *   Merinci persyaratan fungsional dan non-fungsional secara detail untuk pengembangan.
 4.  **[04_SDD_Software_Design_Document.md](04_SDD.md)**
     *   Menjelaskan desain arsitektur sistem, komponen perangkat lunak, dan bagaimana mereka akan berinteraksi.
-5.  **[05_SPRINT_MVP_Timeline_Checklist.md](05_Checklist_Timeline_Sprint_MVP.md
-)**
+5.  **[05_SPRINT_MVP_Timeline_Checklist.md](05_Checklist_Timeline_Sprint_MVP.md)**
     *   Menyediakan rencana kerja berupa daftar periksa dan garis waktu untuk sprint pengembangan MVP.
 
 ---
@@ -34,4 +33,4 @@ Repositori ini berisi serangkaian dokumen spesifikasi perangkat lunak yang meman
 
 ---
 
-Tim ini berkomitmen untuk membangun ProdApp sebagai alat yang efisien dan bermanfaat. Kami menyambut kontribusi dan masukan dari komunitas!
+Tim ini berkomitmen untuk membangun Tagihanku sebagai alat yang efisien dan bermanfaat. Kami menyambut kontribusi dan masukan dari komunitas!
