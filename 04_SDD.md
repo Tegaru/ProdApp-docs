@@ -1,22 +1,22 @@
-# 📘 Software Design Document (SDD) — ProdApp
+# 📘 Software Design Document (SDD) — Tagihanku
 
 **Versi:** 1.0  
-**Tanggal:** 20 Oktober 2025  
+**Tanggal:** 8 November 2025  
 **Author:** Tegar Miftaqur Rohim dan Tim   
 
 ---
 
-### **1.Pendahuluan**
+### **1. Pendahuluan**
 
-### 1.1 Tujuan Dokumen
-Dokumen Desain Perangkat Lunak (SDD) ini menyediakan deskripsi teknis tentang desain arsitektur dan komponen perangkat lunak untuk aplikasi mobile "ProdApp". Dokumen ini bertujuan untuk memandu tim pengembangan dalam implementasi sistem, memastikan semua persyaratan fungsional dan non-fungsional dari dokumen SRS terpenuhi, serta menjaga konsistensi arsitektur.
+#### 1.1 Tujuan Dokumen
+Dokumen Desain Perangkat Lunak (SDD) ini menyediakan deskripsi teknis tentang desain arsitektur dan komponen perangkat lunak untuk aplikasi mobile "Tagihanku". Dokumen ini bertujuan untuk memandu tim pengembangan dalam implementasi sistem, memastikan semua persyaratan fungsional dan non-fungsional dari dokumen SRS terpenuhi, serta menjaga konsistensi arsitektur.
 
-### 1.2 Lingkup Sistem
-ProdApp adalah aplikasi to-do list dan perencana produktivitas mobile yang dikembangkan menggunakan Flutter. Desain ini mencakup struktur arsitektur Clean Code, modul-modul utama (Manajemen Tugas, Kategori, Pengingat, Kalender, Pengaturan), serta detail tentang bagaimana lapisan-lapisan dan komponen-komponen berinteraksi untuk mencapai fungsionalitas yang ditentukan dalam PRD dan SRS.
+#### 1.2 Lingkup Sistem
+Tagihanku adalah aplikasi pencatat dan pengingat tagihan mobile yang dikembangkan menggunakan Flutter. Desain ini mencakup struktur arsitektur Clean Code, modul-modul utama (Manajemen Tagihan, Kategori, Pengingat, Kalender, Pengaturan), serta detail tentang bagaimana lapisan-lapisan dan komponen-komponen berinteraksi untuk mencapai fungsionalitas yang ditentukan dalam PRD dan SRS.
 
 Aplikasi dikembangkan untuk platform Android menggunakan Flutter dengan penyimpanan lokal (offline-first).
 
-### 1.3 Definisi dan Singkatan
+#### 1.3 Definisi dan Singkatan
 
 | Istilah | Definisi |
 |--------|---------|
@@ -28,14 +28,18 @@ Aplikasi dikembangkan untuk platform Android menggunakan Flutter dengan penyimpa
 | Freezed | Generator immutable class |
 | fpdart | Functional programming (Either-based error handling) |
 
-### 1.4 Referensi
-- 01_PRD_ProdApp.md
-- 02_ERD_ProdApp.md
-- 03_SRS_ProdApp.md
+#### 1.4 Referensi
+- 01_PRD_Tagihanku.md
+- 02_ERD_Tagihanku.md
+- 03_SRS_Tagihanku.md
 
 ---
 
-### 2.1 Tinjauan Arsitektur ✔ Clean Architecture
+### **2. Desain Arsitektur Sistem**
+
+#### 2.1 Tinjauan Arsitektur: Clean Architecture
+Arsitektur yang dipilih adalah Clean Architecture untuk memisahkan logika bisnis dari detail implementasi (UI, database), sehingga aplikasi menjadi lebih modular, mudah diuji, dan dipelihara.
+
 ### **2.Desain Arsitektur Sistem**
 ```
 +---------------------------------------------------------+
@@ -56,91 +60,84 @@ Aplikasi dikembangkan untuk platform Android menggunakan Flutter dengan penyimpa
 +---------------------------------------------------------+
 ```
 
-## 2.2 Deskripsi Lapisan
+#### 2.2 Deskripsi Lapisan
 
-### 📍 Presentation Layer
-- Komponen: Screens, Widgets, Providers (Riverpod)
-- Navigasi: GoRouter
-- Tidak mengandung logika bisnis
-- Menampilkan data yang diproses Domain Layer
-
-### 🧠 Domain Layer
-- Komponen: Entities, Use Cases, Interfaces Repository
-- Menjadi pusat logika bisnis
-- Tidak tergantung pada UI maupun database
-
-### 🗄️ Data Layer
-- Mengelola data dari Drift Database
-- Bertanggung jawab pada notifikasi lokal
-- Implementasi dari kontrak repository Domain Layer
+-   **📍 Presentation Layer:** Bertanggung jawab untuk semua yang terkait dengan UI. Lapisan ini tidak mengandung logika bisnis. Ia hanya menampilkan data yang diberikan oleh Domain Layer dan mengirimkan input pengguna ke Domain Layer.
+-   **🧠 Domain Layer:** Merupakan inti dari aplikasi. Berisi entitas, aturan bisnis (use cases), dan antarmuka (kontrak) untuk repository. Lapisan ini tidak bergantung pada lapisan lain.
+-   **🗄️ Data Layer:** Bertanggung jawab untuk mengelola sumber data, baik itu database lokal (Drift) maupun layanan eksternal (API, di masa depan). Lapisan ini mengimplementasikan kontrak repository yang didefinisikan di Domain Layer.
 
 ---
 
-### **3.Desain Komponen Rinci**
+### **3. Desain Komponen Rinci**
 
-### 3.1 Presentation Layer
-📌 Halaman Utama:
-- HomeScreen → daftar tugas
-- Add/Edit Task Screen → formulir input tugas
-- CategoryScreen → pengaturan kategori
-- CalendarScreen → kalender tugas
-- SettingsScreen → tema & izin notifikasi
+#### 3.1 Presentation Layer
 
-📌 State Management
-- Menggunakan `StateNotifier` / `AsyncNotifier` Riverpod
+-   **📌 Halaman (Screens):**
+    -   `HomeScreen`: Menampilkan ringkasan dan daftar tagihan yang akan datang.
+    -   `AddEditBillScreen`: Formulir untuk menambah atau mengedit tagihan.
+    -   `CategoryScreen`: Pengelolaan kategori (menambah, mengedit, menghapus).
+    -   `CalendarScreen`: Tampilan kalender yang menandai tanggal jatuh tempo tagihan.
+    -   `SettingsScreen`: Pengaturan tema aplikasi dan izin notifikasi.
 
-📌 Routing
+-   **📌 State Management:**
+    -   Menggunakan `StateNotifier` atau `AsyncNotifier` dari Riverpod untuk mengelola state setiap halaman.
+
+-   **📌 Routing (GoRouter):**
+
 | Route | Page |
-|------|------|
+|---|---|
 | `/` | HomeScreen |
-| `/task/add` | AddTaskScreen |
+| `/bill/add` | AddEditBillScreen (mode tambah) |
+| `/bill/edit/:id` | AddEditBillScreen (mode edit) |
 | `/categories` | CategoryScreen |
 | `/calendar` | CalendarScreen |
 | `/settings` | SettingsScreen |
 
----
+#### 3.2 Domain Layer
 
-### 3.2 Domain Layer
+-   **Entities (dibuat dengan Freezed):**
+    -   `BillEntity`: Merepresentasikan objek tagihan.
+    -   `CategoryEntity`: Merepresentasikan objek kategori.
+    -   `ReminderEntity`: Merepresentasikan objek pengingat.
 
-#### Entities (Freezed)
-- TaskEntity
-- CategoryEntity
-- ReminderEntity
+-   **Use Cases:**
 
-#### Use Cases
 | Use Case | Fungsi |
-|---------|--------|
-| AddTask | CRUD menambah tugas |
-| UpdateTask | Edit tugas |
-| ToggleTaskStatus | Ubah selesai/belum |
-| DeleteTask | Menghapus |
-| GetTasksByDate | Filter tanggal |
-| SetReminder | Atur pengingat |
+|---|---|
+| `AddBill` | Menambah tagihan baru. |
+| `UpdateBill` | Mengedit detail tagihan. |
+| `UpdateBillStatus` | Mengubah status tagihan (misal: menjadi 'Lunas'). |
+| `DeleteBill` | Menghapus tagihan. |
+| `GetBillsByDueDate` | Mendapatkan daftar tagihan berdasarkan tanggal jatuh tempo. |
+| `SetReminderForBill` | Mengatur jadwal pengingat untuk sebuah tagihan. |
 
 ---
 
 ### **4. Desain Data (Database)**
 
-*   **Implementasi:** Skema database yang telah dirancang akan diimplementasikan menggunakan class-class `Table` di Drift.
-*   **Relasi:** Relasi `FOREIGN KEY` antara `Transactions` dan `Categories` akan didefinisikan dalam model tabel Drift.
-*   **Aturan Integritas:** Aturan `ON DELETE RESTRICT` akan diimplementasikan pada `FOREIGN KEY` untuk mencegah penghapusan kategori yang sedang digunakan.
-*   **Migrasi:** Drift akan menangani skema migrasi. Setiap perubahan pada struktur tabel setelah rilis awal akan memerlukan skema migrasi baru.
+-   **Implementasi:** Skema database yang telah dirancang dalam ERD akan diimplementasikan menggunakan class `Table` di Drift.
+-   **Relasi:** Relasi `FOREIGN KEY` antara `Bills` dan `Categories` akan didefinisikan dalam model tabel Drift.
+-   **Aturan Integritas:** Aturan `ON DELETE SET NULL` akan diimplementasikan pada `FOREIGN KEY` `category_id` di tabel `Bills` untuk memastikan jika sebuah kategori dihapus, tagihan yang terkait tidak ikut terhapus.
+-   **Migrasi:** Drift akan menangani skema migrasi. Setiap perubahan pada struktur tabel setelah rilis awal akan memerlukan skema migrasi baru.
+
+---
 
 ### **5. Strategi Penanganan Error (Error Handling)**
 
-*   **Konsep:** Menggunakan `fpdart` untuk menghindari `try-catch` blocks yang berlebihan dan `Exception` yang tidak tertangani.
-*   **Alur:**
-    1.  **Data Layer:** Method di Repository akan mengembalikan `Future<Either<Failure, T>>`. Jika query database gagal, ia akan mengembalikan `Left(DatabaseFailure("Pesan Error"))`. Jika berhasil, ia akan mengembalikan `Right(data)`.
-    2.  **Domain Layer:** Use cases akan meneruskan `Either` ini ke atas.
+-   **Konsep:** Menggunakan `fpdart` dengan tipe `Either` untuk menangani hasil operasi yang bisa gagal (seperti query database) secara fungsional. Ini menghindari `try-catch` blocks yang berlebihan dan `Exception` yang tidak tertangani.
+-   **Alur:**
+    1.  **Data Layer:** Method di Repository akan mengembalikan `Future<Either<Failure, T>>`. Jika query gagal, ia mengembalikan `Left(DatabaseFailure("Pesan Error"))`. Jika berhasil, ia mengembalikan `Right(data)`.
+    2.  **Domain Layer:** Use cases akan meneruskan `Either` ini ke atas tanpa modifikasi.
     3.  **Presentation Layer:** Provider Riverpod akan menerima `Either`. UI (Widget) akan melakukan `pattern matching` pada hasilnya:
-        *   Jika `Right`, tampilkan data.
-        *   Jika `Left`, tampilkan pesan error kepada pengguna (misalnya, menggunakan `SnackBar` atau widget error).
-*   **Tipe `Failure`:** Akan dibuat class `Failure` dasar dan beberapa turunan spesifik:
-    *   `abstract class Failure {}`
-    *   `class DatabaseFailure extends Failure { final String message; }`
-    *   `class NetworkFailure extends Failure { final String message; }` (untuk masa depan).
+        -   Jika `Right`, tampilkan data.
+        -   Jika `Left`, tampilkan pesan error kepada pengguna (misal, menggunakan `SnackBar` atau widget khusus error).
+-   **Tipe `Failure`:** Akan dibuat class `Failure` abstrak dan beberapa turunan spesifik:
+    -   `abstract class Failure {}`
+    -   `class DatabaseFailure extends Failure { final String message; }`
 
-### **6.Struktur Proyek**
+---
+
+### **6. Struktur Proyek**
 
 ```
 lib/
@@ -150,48 +147,44 @@ lib/
     │   ├── error/                     # Failure handling fpdart
     │   ├── themes/                    # Light & Dark theme App
     │   ├── utils/                     # Helper, formatter
-    │   └── di/                        # Dependency Injection provider
+    │   └── di/                        # Dependency Injection (Riverpod providers)
     │
-    ├── data/                          # Data Layer (paling luar)
-    │   ├── datasources/               # Drift Database, DAO, Notifikasi
-    │   ├── models/                    # DTO & tabel mapping
-    │   └── repositories/              # Implementasi Repositori Domain
+    ├── data/                          # Data Layer (lapisan terluar)
+    │   ├── datasources/               # Drift Database, DAO, Local Notification Service
+    │   ├── models/                    # Model tabel & mapping data
+    │   └── repositories/              # Implementasi dari kontrak Repository Domain
     │
-    ├── domain/                        # Business Logic Layer
-    │   ├── entities/                  # Model inti aplikasi (immutable)
-    │   ├── repositories/              # Kontrak Abstract Repository
-    │   └── usecases/                  # Aturan bisnis (AddTask, etc.)
+    ├── domain/                        # Business Logic Layer (inti aplikasi)
+    │   ├── entities/                  # Model inti aplikasi (immutable, via Freezed)
+    │   ├── repositories/              # Kontrak/Interface Abstract Repository
+    │   └── usecases/                  # Aturan bisnis (mis: AddBill, GetBills, etc.)
     │
-    └── presentation/                  # UI Layer
-        ├── features/                  # Modular per fitur
-        │   ├── task/                  # Fitur To-Do List
-        │   │   ├── screens/           # Tampilan halaman Task
-        │   │   ├── widgets/           # Komponen reusable Task
-        │   │   └── providers/         # Riverpod provider Task
+    └── presentation/                  # UI Layer (semua yang terkait tampilan)
+        ├── features/                  # Dibagi per modul fitur
+        │   ├── bill/                  # Fitur Manajemen Tagihan (inti)
+        │   │   ├── screens/           # Tampilan halaman daftar, tambah/edit tagihan
+        │   │   ├── widgets/           # Komponen UI khusus untuk fitur tagihan
+        │   │   └── providers/         # Riverpod provider untuk state tagihan
         │   │
-        │   ├── category/
-        │   │   ├── screens/
-        │   │   ├── widgets/
-        │   │   └── providers/
+        │   ├── category/              # Fitur Manajemen Kategori
+        │   │   ├── screens/           # Halaman untuk mengelola kategori
+        │   │   ├── widgets/           # Komponen UI khusus kategori
+        │   │   └── providers/         # Riverpod provider untuk state kategori
         │   │
-        │   ├── reminder/
-        │   │   ├── providers/
-        │   │   └── widgets/
+        │   ├── calendar/              # Fitur Kalender
+        │   │   ├── screens/           # Halaman utama kalender
+        │   │   ├── widgets/           # Komponen UI kalender
+        │   │   └── providers/         # Riverpod provider untuk state kalender
         │   │
-        │   ├── calendar/
-        │   │   ├── screens/
-        │   │   ├── widgets/
-        │   │   └── providers/
-        │   │
-        │   └── settings/
-        │       ├── screens/
-        │       ├── widgets/
-        │       └── providers/
+        │   └── settings/              # Fitur Pengaturan
+        │       ├── screens/           # Halaman pengaturan aplikasi
+        │       ├── widgets/           # Komponen UI pengaturan
+        │       └── providers/         # Riverpod provider untuk state pengaturan
         │
-        ├── global_widgets/            # Widget yang banyak dipakai
-        └── routing/                   # GoRouter setup & navigation
+        ├── global_widgets/            # Widget yang bisa dipakai di banyak fitur
+        └── routing/                   # Konfigurasi GoRouter & navigasi
             └── app_router.dart
 ```
 
-📌 **Dokumen SDD ini akan digunakan sebagai pedoman resmi dalam implementasi ProdApp.**  
+📌 **Dokumen SDD ini akan digunakan sebagai pedoman resmi dalam implementasi aplikasi Tagihanku.**
 """
